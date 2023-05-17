@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "proto";
+
+import "google/protobuf/empty.proto";
+import "proto/topic.proto";
+import "proto/question.proto";
+import "proto/answer.proto";
+
+service Api {
+  rpc Register(RegisterRequest) returns (User) {};
+  rpc Login(LoginRequest) returns (User) {};
+
+  rpc ListTopic(ListTopicRequest) returns (ListTopicResponse) {};
+  rpc GetTopic(GetTopicRequest) returns (Topic) {};
+  rpc CreateTopic(CreateTopicRequest) returns (Topic) {};
+  rpc UpdateTopic(UpdateTopicRequest) returns (Topic) {};
+  rpc DeleteTopic(DeleteTopicRequest) returns (google.protobuf.Empty) {};
+
+  rpc ListQuestion(ListQuestionRequest) returns (ListQuestionResponse) {};
+  rpc GetQuestion(GetQuestionRequest) returns (Question) {};
+  rpc CreateQuestion(CreateQuestionRequest) returns (Question) {};
+  rpc UpdateQuestion(UpdateQuestionRequest) returns (Question) {};
+  rpc DeleteQuestion(DeleteQuestionRequest) returns (google.protobuf.Empty) {};
+
+  rpc ListAnswer(ListAnswerRequest) returns (ListAnswerResponse) {};
+  rpc GetAnswer(GetAnswerRequest) returns (Answer) {};
+  rpc CreateAnswer(CreateAnswerRequest) returns (Answer) {};
+  rpc UpdateAnswer(UpdateAnswerRequest) returns (Answer) {};
+  rpc DeleteAnswer(DeleteAnswerRequest) returns (google.protobuf.Empty) {};
+}
+
+message RegisterRequest {
+  string email = 1;
+  string password = 2;
+}
+
+message LoginRequest {
+  string email = 1;
+  string password = 2;
+}
+
+message User {
+  int64 id = 1;
+  string email = 2;
+  string token = 3;
+}

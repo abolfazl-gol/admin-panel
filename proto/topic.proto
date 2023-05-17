@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "proto";
+
+message Topic {
+  int64 id = 1;
+  string name = 2;
+  bool enabled = 3;
+}
+
+message ListTopicRequest {}
+message ListTopicResponse { repeated Topic topics = 1; }
+message GetTopicRequest { int64 id = 1; }
+
+message CreateTopicRequest {
+  string name = 1;
+  bool enabled = 2;
+}
+
+message UpdateTopicRequest {
+  Topic topic = 1;
+  repeated string update_mask = 2;
+}
+message DeleteTopicRequest { int64 id = 1; }
